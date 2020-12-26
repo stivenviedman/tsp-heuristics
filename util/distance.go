@@ -21,3 +21,19 @@ func ComputeTotalDistance(locs []Point) float64 {
 
 	return dis
 }
+
+// ComputeDistances compute distances from origin to a set of destinations
+func ComputeDistances(origin Point, locations []Point) []DistanceElement {
+	distances := []DistanceElement{}
+
+	for i := 0; i < len(locations); i++ {
+		distance := DistanceElement{
+			Distance: ComputeDistance(origin, locations[i]),
+			Index:    i,
+		}
+
+		distances = append(distances, distance)
+	}
+
+	return distances
+}

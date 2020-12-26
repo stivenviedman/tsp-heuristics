@@ -10,3 +10,9 @@ type Point struct {
 type Input struct {
 	Points []Point `json:"points"`
 }
+
+// DistanceElement represents the distance between two point and the index of the destination
+type DistanceElement struct {
+	Distance float64
+	Index    int
+}
