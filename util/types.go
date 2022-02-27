@@ -8,7 +8,8 @@ type Point struct {
 
 // Input input data format
 type Input struct {
-	Points []Point `json:"points"`
+	Points    []Point `json:"points"`
+	Algorithm string  `json:"algorithm"`
 }
 
 // DistanceElement represents the distance between two point and the index of the destination
