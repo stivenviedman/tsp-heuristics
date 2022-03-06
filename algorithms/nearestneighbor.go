@@ -1,9 +1,9 @@
-package nearestneighbor
+package algorithms
 
 import "tsp-problems/util"
 
 // Run runs algorithm
-func Run(locs []util.Edge) []util.Edge {
+func NN(locs []util.Edge) []util.Edge {
 	origin := locs[0]
 	toVisit := locs[1:]
 

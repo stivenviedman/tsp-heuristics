@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	// "tsp-problems/nearestneighbor"
 )
 
 // ReadTxt reads file and return slice of locations
@@ -22,20 +21,4 @@ func ReadTxt(file string) Input {
 	}
 
 	return data
-}
-
-func IsAlgorithmSupported(alg string) bool {
-	validAlgorithms := []string{"nn"}
-
-	return sliceContains(validAlgorithms, alg)
-}
-
-func sliceContains(s []string, str string) bool {
-	for _, v := range s {
-		if v == str {
-			return true
-		}
-	}
-
-	return false
 }
