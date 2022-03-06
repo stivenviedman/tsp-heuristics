@@ -6,7 +6,7 @@ import (
 )
 
 // ComputeDistance compute the distance between two points in 2D
-func ComputeDistance(positionA Point, positionB Point) float64 {
+func ComputeDistance(positionA Edge, positionB Edge) float64 {
 	x := math.Abs(positionA.X - positionB.X)
 	y := math.Abs(positionB.Y - positionA.Y)
 
@@ -14,7 +14,7 @@ func ComputeDistance(positionA Point, positionB Point) float64 {
 }
 
 // ComputeTotalDistance compute the total distance of a given route
-func ComputeTotalDistance(locs []Point) float64 {
+func ComputeTotalDistance(locs []Edge) float64 {
 	var dis float64
 
 	for i := 0; i < len(locs)-1; i++ {
@@ -26,7 +26,7 @@ func ComputeTotalDistance(locs []Point) float64 {
 }
 
 // ComputeDistances compute distances from origin to a set of destinations
-func ComputeDistances(origin Point, locations []Point) []DistanceElement {
+func ComputeDistances(origin Edge, locations []Edge) []DistanceElement {
 	distances := []DistanceElement{}
 
 	for i := 0; i < len(locations); i++ {

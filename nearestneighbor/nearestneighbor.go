@@ -3,11 +3,11 @@ package nearestneighbor
 import "tsp-problems/util"
 
 // Run runs algorithm
-func Run(locs []util.Point) []util.Point {
+func Run(locs []util.Edge) []util.Edge {
 	origin := locs[0]
 	toVisit := locs[1:]
 
-	visited := []util.Point{origin}
+	visited := []util.Edge{origin}
 
 	for len(toVisit) > 0 {
 		// get list of sorted locations

@@ -1,12 +1,12 @@
 package util
 
-// RemoveLocation receives a slice of Point and deletes de Point corresponding to the provide index
-func RemoveLocation(d []Point, i int) []Point {
+// RemoveLocation receives a slice of Edges and deletes the Edge corresponding to the provide index
+func RemoveLocation(d []Edge, i int) []Edge {
 	return append(d[:i], d[i+1:]...)
 }
 
 // InsertEdge inserts an edge at a specify index
-func InsertEdge(d []Point, edge Point, i int) []Point {
+func InsertEdge(d []Edge, edge Edge, i int) []Edge {
 	d = append(d[:i+1], d[i:]...)
 	d[i] = edge
 

@@ -12,15 +12,15 @@ func main() {
 	input := util.ReadTxt("tsp-data.json")
 
 	if util.Contains(constants.SupportedAlgorithms, input.Algorithm) {
-		var route []util.Point
+		var route []util.Edge
 
 		switch input.Algorithm {
 		// "nn"
 		case constants.SupportedAlgorithms[0]:
-			route = nearestneighbor.Run(input.Points)
+			route = nearestneighbor.Run(input.Edges)
 		// farthest insertion
 		case constants.SupportedAlgorithms[1]:
-			route = farthestinsertion.Run(input.Points)
+			route = farthestinsertion.Run(input.Edges)
 		}
 
 		totDis := util.ComputeTotalDistance(route)

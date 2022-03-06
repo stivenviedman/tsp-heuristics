@@ -1,20 +1,20 @@
 package farthestinsertion
 
-import (
-	"tsp-problems/util"
-)
+import "tsp-problems/util"
 
 func Run(locs []util.Edge) []util.Edge {
 	var tour []util.Edge
 
 	// Construct initial tour
-	tour = append(tour, locs[0], locs[1])
+	tourFirstEdge := locs[0]
+	tourSecondEdge := util.SortLocation(util.ComputeDistances(locs[0], locs[1:]))[0]
+	tour = append(tour, tourFirstEdge, locs[tourSecondEdge.Index])
 	locs = util.RemoveLocation(locs, 0)
 	locs = util.RemoveLocation(locs, 0)
 
 	for len(locs) > 0 {
 		// Get next edge to add
-		nextEdge, index := getMaxDisEdge(tour, locs)
+		nextEdge, index := getMaximumDisEdge(tour, locs)
 
 		// Append new edge into tour
 		tour = appendNewEdge(tour, nextEdge)
@@ -26,7 +26,14 @@ func Run(locs []util.Edge) []util.Edge {
 	return tour
 }
 
-func getMaxDisEdge(locs []util.Edge, potLocs []util.Edge) (util.Edge, int) {
+func getInitialTour(locs []util.Edge) []util.Edge {
+	return []util.Edge{
+		locs[0],
+		locs[util.SortLocation(util.ComputeDistances(locs[0], locs[1:]))[0].Index],
+	}
+}
+
+func getMaximumDisEdge(locs []util.Edge, potLocs []util.Edge) (util.Edge, int) {
 	element := potLocs[0]
 	index := 0
 	distance := util.ComputeDistance(locs[0], potLocs[0])
