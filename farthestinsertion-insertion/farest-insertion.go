@@ -9,8 +9,8 @@ func Run(locs []util.Edge) []util.Edge {
 	tourFirstEdge := locs[0]
 	tourSecondEdge := util.SortLocation(util.ComputeDistances(locs[0], locs[1:]))[0]
 	tour = append(tour, tourFirstEdge, locs[tourSecondEdge.Index])
-	locs = util.RemoveLocation(locs, 0)
-	locs = util.RemoveLocation(locs, 0)
+	locs = util.RemoveEdge(locs, 0)
+	locs = util.RemoveEdge(locs, 0)
 
 	for len(locs) > 0 {
 		// Get next edge to add
@@ -20,7 +20,7 @@ func Run(locs []util.Edge) []util.Edge {
 		tour = appendNewEdge(tour, nextEdge)
 
 		// Remove added edge from locs
-		locs = util.RemoveLocation(locs, index)
+		locs = util.RemoveEdge(locs, index)
 	}
 
 	return tour

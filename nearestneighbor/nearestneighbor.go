@@ -19,7 +19,7 @@ func Run(locs []util.Edge) []util.Edge {
 		visited = append(visited, nearest)
 
 		// remove last added location from to visit list
-		toVisit = util.RemoveLocation(toVisit, sLocations[0].Index)
+		toVisit = util.RemoveEdge(toVisit, sLocations[0].Index)
 
 		// reassign origin
 		origin = nearest

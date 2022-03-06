@@ -4,23 +4,23 @@ import (
 	"tsp-problems/util"
 )
 
-func Run(locs []util.Edge) []util.Edge {
+func Run(edges []util.Edge) []util.Edge {
 	var tour []util.Edge
 
 	// Construct initial tour
-	tour = append(tour, locs[0], locs[1])
-	locs = util.RemoveLocation(locs, 0)
-	locs = util.RemoveLocation(locs, 0)
+	tour = append(tour, edges[0], edges[1])
+	edges = util.RemoveEdge(edges, 0)
+	edges = util.RemoveEdge(edges, 0)
 
-	for len(locs) > 0 {
+	for len(edges) > 0 {
 		// Get next edge to add
-		nextEdge, index := getMaxDisEdge(tour, locs)
+		nextEdge, index := getMaxDisEdge(tour, edges)
 
 		// Append new edge into tour
 		tour = appendNewEdge(tour, nextEdge)
 
 		// Remove added edge from locs
-		locs = util.RemoveLocation(locs, index)
+		edges = util.RemoveEdge(edges, index)
 	}
 
 	return tour
