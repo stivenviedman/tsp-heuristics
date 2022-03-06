@@ -1,6 +1,9 @@
 package util
 
-import "math"
+import (
+	"math"
+	"sort"
+)
 
 // ComputeDistance compute the distance between two points in 2D
 func ComputeDistance(positionA Point, positionB Point) float64 {
@@ -34,6 +37,15 @@ func ComputeDistances(origin Point, locations []Point) []DistanceElement {
 
 		distances = append(distances, distance)
 	}
+
+	return distances
+}
+
+// SortLocation sorts location from closest to farthest
+func SortLocation(distances []DistanceElement) []DistanceElement {
+	sort.SliceStable(distances, func(i, j int) bool {
+		return distances[i].Distance < distances[j].Distance
+	})
 
 	return distances
 }
