@@ -3,6 +3,14 @@ package algorithms
 import "tsp-problems/util"
 
 func FarthestInsertion(edges []util.Edge) []util.Edge {
+	return insertion(edges, getMaxDisEdge, appendNewEdge)
+}
+
+func insertion(
+	edges []util.Edge,
+	selectNode func(locs []util.Edge, potLocs []util.Edge) (util.Edge, int),
+	insertNode func(locs []util.Edge, edge util.Edge) []util.Edge,
+) []util.Edge {
 	var tour []util.Edge
 
 	// Construct initial tour
@@ -12,10 +20,10 @@ func FarthestInsertion(edges []util.Edge) []util.Edge {
 
 	for len(edges) > 0 {
 		// Get next edge to add
-		nextEdge, index := getMaxDisEdge(tour, edges)
+		nextEdge, index := selectNode(tour, edges)
 
 		// Append new edge into tour
-		tour = appendNewEdge(tour, nextEdge)
+		tour = insertNode(tour, nextEdge)
 
 		// Remove added edge from locs
 		edges = util.RemoveEdge(edges, index)
@@ -29,12 +37,12 @@ func getMaxDisEdge(locs []util.Edge, potLocs []util.Edge) (util.Edge, int) {
 	index := 0
 	distance := util.ComputeDistance(locs[0], potLocs[0])
 
-	for i, canditate := range potLocs {
+	for i, candidate := range potLocs {
 		for _, routeLoc := range locs {
-			newDist := util.ComputeDistance(canditate, routeLoc)
+			newDist := util.ComputeDistance(candidate, routeLoc)
 
 			if newDist > distance {
-				element = canditate
+				element = candidate
 				index = i
 				distance = newDist
 			}
