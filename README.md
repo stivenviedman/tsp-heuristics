@@ -12,7 +12,7 @@ I've always been fascinated by the conceptual simplicity of the Traveling Salesm
 
 ## How to use it
 
-Modify the <code>tsp-data.json</code> file depending on your needs. The file expects two inputs: the name of the algorithm you want to use and the edges of the problem instance.
+Modify the <code>tsp-data.json</code> file depending on your needs. The file expects two inputs: the name of the algorithm you want to use and the nodes of the problem instance.
 
 Execute <code>go run main/main.go</code> and the result should look like:
 

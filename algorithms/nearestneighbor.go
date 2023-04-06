@@ -3,11 +3,11 @@ package algorithms
 import "tsp-problems/util"
 
 // Run runs algorithm
-func NN(locs []util.Edge) []util.Edge {
+func NN(locs []util.Node) []util.Node {
 	origin := locs[0]
 	toVisit := locs[1:]
 
-	visited := []util.Edge{origin}
+	visited := []util.Node{origin}
 
 	for len(toVisit) > 0 {
 		// get list of sorted locations
@@ -19,7 +19,7 @@ func NN(locs []util.Edge) []util.Edge {
 		visited = append(visited, nearest)
 
 		// remove last added location from to visit list
-		toVisit = util.RemoveEdge(toVisit, sLocations[0].Index)
+		toVisit = util.RemoveNode(toVisit, sLocations[0].Index)
 
 		// reassign origin
 		origin = nearest

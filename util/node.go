@@ -5,21 +5,21 @@ import (
 	"sort"
 )
 
-// RemoveLocation receives a slice of Edges and deletes the Edge corresponding to the provide index
-func RemoveEdge(d []Edge, i int) []Edge {
+// RemoveNode receives a slice of nodes and deletes the node corresponding to the provide index
+func RemoveNode(d []Node, i int) []Node {
 	return append(d[:i], d[i+1:]...)
 }
 
-// InsertEdge inserts an edge at a specified index
-func InsertEdge(d []Edge, edge Edge, i int) []Edge {
+// InsertNode inserts an node at a specified index
+func InsertNode(d []Node, node Node, i int) []Node {
 	d = append(d[:i+1], d[i:]...)
-	d[i] = edge
+	d[i] = node
 
 	return d
 }
 
 // ComputeDistance compute the distance between two points in 2D
-func ComputeDistance(positionA Edge, positionB Edge) float64 {
+func ComputeDistance(positionA Node, positionB Node) float64 {
 	x := math.Abs(positionA.X - positionB.X)
 	y := math.Abs(positionB.Y - positionA.Y)
 
@@ -27,19 +27,19 @@ func ComputeDistance(positionA Edge, positionB Edge) float64 {
 }
 
 // ComputeTotalDistance compute the total distance of a given route
-func ComputeTotalDistance(edges []Edge) float64 {
+func ComputeTotalDistance(nodes []Node) float64 {
 	var dis float64
 
-	for i := 0; i < len(edges)-1; i++ {
+	for i := 0; i < len(nodes)-1; i++ {
 		j := i + 1
-		dis = ComputeDistance(edges[i], edges[j])
+		dis = ComputeDistance(nodes[i], nodes[j])
 	}
 
 	return dis
 }
 
 // ComputeDistances compute distances from origin to a set of destinations
-func ComputeDistances(origin Edge, locations []Edge) []DistanceElement {
+func ComputeDistances(origin Node, locations []Node) []DistanceElement {
 	distances := []DistanceElement{}
 
 	for i := 0; i < len(locations); i++ {

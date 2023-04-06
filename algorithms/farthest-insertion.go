@@ -2,37 +2,37 @@ package algorithms
 
 import "tsp-problems/util"
 
-func FarthestInsertion(edges []util.Edge) []util.Edge {
-	return insertion(edges, getMaxDisEdge, appendNewEdge)
+func FarthestInsertion(nodes []util.Node) []util.Node {
+	return insertion(nodes, getFarthestNode, insertMinCost)
 }
 
 func insertion(
-	edges []util.Edge,
-	selectNode func(locs []util.Edge, potLocs []util.Edge) (util.Edge, int),
-	insertNode func(locs []util.Edge, edge util.Edge) []util.Edge,
-) []util.Edge {
-	var tour []util.Edge
+	nodes []util.Node,
+	selectNode func(locs []util.Node, potLocs []util.Node) (util.Node, int),
+	insertNode func(locs []util.Node, node util.Node) []util.Node,
+) []util.Node {
+	var tour []util.Node
 
 	// Construct initial tour
-	tour = append(tour, edges[0], edges[1])
-	edges = util.RemoveEdge(edges, 0)
-	edges = util.RemoveEdge(edges, 0)
+	tour = append(tour, nodes[0], nodes[1])
+	nodes = util.RemoveNode(nodes, 0)
+	nodes = util.RemoveNode(nodes, 0)
 
-	for len(edges) > 0 {
-		// Get next edge to add
-		nextEdge, index := selectNode(tour, edges)
+	for len(nodes) > 0 {
+		// Get next RemoveNode to add
+		nextNode, index := selectNode(tour, nodes)
 
-		// Append new edge into tour
-		tour = insertNode(tour, nextEdge)
+		// Append new RemoveNode into tour
+		tour = insertNode(tour, nextNode)
 
-		// Remove added edge from locs
-		edges = util.RemoveEdge(edges, index)
+		// Remove added node from locs
+		nodes = util.RemoveNode(nodes, index)
 	}
 
 	return tour
 }
 
-func getMaxDisEdge(locs []util.Edge, potLocs []util.Edge) (util.Edge, int) {
+func getFarthestNode(locs []util.Node, potLocs []util.Node) (util.Node, int) {
 	element := potLocs[0]
 	index := 0
 	distance := util.ComputeDistance(locs[0], potLocs[0])
@@ -52,12 +52,12 @@ func getMaxDisEdge(locs []util.Edge, potLocs []util.Edge) (util.Edge, int) {
 	return element, index
 }
 
-func appendNewEdge(locs []util.Edge, edge util.Edge) []util.Edge {
-	cost := computeCost(locs[0], locs[1], edge)
+func insertMinCost(locs []util.Node, node util.Node) []util.Node {
+	cost := computeCost(locs[0], locs[1], node)
 	index := 0
 
 	for i := 1; i < len(locs)-1; i++ {
-		newCost := computeCost(locs[i], locs[i+1], edge)
+		newCost := computeCost(locs[i], locs[i+1], node)
 
 		if newCost < cost {
 			cost = newCost
@@ -65,10 +65,10 @@ func appendNewEdge(locs []util.Edge, edge util.Edge) []util.Edge {
 		}
 	}
 
-	return util.InsertEdge(locs, edge, index)
+	return util.InsertNode(locs, node, index)
 }
 
-func computeCost(i util.Edge, j util.Edge, k util.Edge) float64 {
+func computeCost(i util.Node, j util.Node, k util.Node) float64 {
 	ikDist := util.ComputeDistance(i, k)
 	jkDist := util.ComputeDistance(j, k)
 	ijDist := util.ComputeDistance(i, j)
