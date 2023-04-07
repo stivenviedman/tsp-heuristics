@@ -11,16 +11,16 @@ import (
 func main() {
 	input := util.ReadTxt("tsp-data.json")
 
-	if util.Contains(constants.SupportedAlgorithms, input.Algorithm) {
+	if algoName, ok := constants.SupportedAlgorithms[input.Algorithm]; ok {
 		var route []util.Node
 
-		switch input.Algorithm {
-		// "nn"
-		case constants.SupportedAlgorithms[0]:
+		switch algoName {
+		case constants.SupportedAlgorithms["nn"]:
 			route = nn.NN(input.Nodes)
-		// farthest insertion
-		case constants.SupportedAlgorithms[1]:
+		case constants.SupportedAlgorithms["farthest-insertion"]:
 			route = insertion.FarthestInsertion(input.Nodes)
+		case constants.SupportedAlgorithms["nearest-insertion"]:
+			route = insertion.NearestInsertion(input.Nodes)
 		}
 
 		totDis := util.ComputeTotalDistance(route)

@@ -4,15 +4,13 @@ I've always been fascinated by the conceptual simplicity of the Traveling Salesm
 
 ## Implementation of TSP algorithms
 
-- Nearest Neighbor
-- Farthest Insertion
-- Greedy Algorithm (TODO)
-- Nearest Insertion (TODO)
-- Double Minimum Spanning Tree (TODO)
+- Nearest Neighbor (code: nn)
+- Farthest Insertion (code: farthest-insertion)
+- Nearest Insertion (code: nearest-insertion)
 
 ## How to use it
 
-Modify the <code>tsp-data.json</code> file depending on your needs. The file expects two inputs: the name of the algorithm you want to use and the nodes of the problem instance.
+Modify the <code>tsp-data.json</code> file depending on your needs. The file expects two inputs: the algorithm code name (check the values in parentheses in the previous section) and the instance nodes as <code>x, y</code> coordinates.
 
 Execute <code>go run main/main.go</code> and the result should look like:
 

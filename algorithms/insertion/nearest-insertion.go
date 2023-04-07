@@ -7,6 +7,6 @@ import (
 	"tsp-problems/util"
 )
 
-func FarthestInsertion(nodes []util.Node) []util.Node {
-	return base.Insertion(nodes, nodeSelection.FarthestInsertion, nodeInsertion.MinCost)
+func NearestInsertion(nodes []util.Node) []util.Node {
+	return base.Insertion(nodes, nodeSelection.NearestInsertion, nodeInsertion.MinCost)
 }

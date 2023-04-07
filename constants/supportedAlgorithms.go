@@ -1,4 +1,7 @@
 package constants
 
-// List of SupportedAlgorithms
-var SupportedAlgorithms = []string{"nn", "farthest-insertion"}
+var SupportedAlgorithms = map[string]string{
+	"nn":                 "nn",
+	"farthest-insertion": "farthest-insertion",
+	"nearest-insertion":  "nearest-insertion",
+}
