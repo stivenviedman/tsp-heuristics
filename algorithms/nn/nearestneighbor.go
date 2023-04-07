@@ -1,4 +1,4 @@
-package algorithms
+package nn
 
 import "tsp-problems/util"
 

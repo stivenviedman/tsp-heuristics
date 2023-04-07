@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"tsp-problems/algorithms"
+	"tsp-problems/algorithms/insertion"
+	"tsp-problems/algorithms/nn"
 	"tsp-problems/constants"
 	"tsp-problems/util"
 )
@@ -16,10 +17,10 @@ func main() {
 		switch input.Algorithm {
 		// "nn"
 		case constants.SupportedAlgorithms[0]:
-			route = algorithms.NN(input.Nodes)
+			route = nn.NN(input.Nodes)
 		// farthest insertion
 		case constants.SupportedAlgorithms[1]:
-			route = algorithms.FarthestInsertion(input.Nodes)
+			route = insertion.FarthestInsertion(input.Nodes)
 		}
 
 		totDis := util.ComputeTotalDistance(route)
