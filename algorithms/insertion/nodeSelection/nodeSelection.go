@@ -41,3 +41,27 @@ func NearestInsertion(locs []util.Node, potLocs []util.Node) (util.Node, int) {
 
 	return element, index
 }
+
+// Node whose minimal distance to a tour node is maximal
+func MinMax(locs []util.Node, potLocs []util.Node) (util.Node, int) {
+	index := 0
+	minDistances := map[int]localNearestPoint{}
+
+	for i, candidate := range potLocs {
+		_, _, minDist := util.GetNearestNode(candidate, locs)
+		minDistances[i] = localNearestPoint{i, minDist}
+	}
+
+	for _, localNearest := range minDistances {
+		if localNearest.distance > minDistances[index].distance {
+			index = localNearest.index
+		}
+	}
+
+	return potLocs[index], index
+}
+
+type localNearestPoint struct {
+	index    int
+	distance float64
+}

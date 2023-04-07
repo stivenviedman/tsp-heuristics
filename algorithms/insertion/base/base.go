@@ -10,8 +10,7 @@ func Insertion(
 	var tour []util.Node
 
 	// Construct initial tour
-	tour = append(tour, nodes[0], nodes[1])
-	nodes = util.RemoveNode(nodes, 0)
+	tour = append(tour, nodes[0])
 	nodes = util.RemoveNode(nodes, 0)
 
 	for len(nodes) > 0 {

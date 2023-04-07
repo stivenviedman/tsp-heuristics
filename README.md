@@ -7,6 +7,7 @@ I've always been fascinated by the conceptual simplicity of the Traveling Salesm
 - Nearest Neighbor (code: nn)
 - Farthest Insertion (code: farthest-insertion)
 - Nearest Insertion (code: nearest-insertion)
+- Min Max Insertion (code: min-max-insertion)
 
 ## How to use it
 

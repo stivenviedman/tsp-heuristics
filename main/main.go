@@ -21,6 +21,8 @@ func main() {
 			route = insertion.FarthestInsertion(input.Nodes)
 		case constants.SupportedAlgorithms["nearest-insertion"]:
 			route = insertion.NearestInsertion(input.Nodes)
+		case constants.SupportedAlgorithms["min-max-insertion"]:
+			route = insertion.MinMaxInsertion(input.Nodes)
 		}
 
 		totDis := util.ComputeTotalDistance(route)
