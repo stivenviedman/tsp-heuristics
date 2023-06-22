@@ -1,8 +1,8 @@
-package base
+package insertion
 
 import "tsp-problems/util"
 
-func Insertion(
+func baseInsertion(
 	nodes []util.Node,
 	selectNode func(locs []util.Node, potLocs []util.Node) (util.Node, int),
 	insertNode func(locs []util.Node, node util.Node) []util.Node,

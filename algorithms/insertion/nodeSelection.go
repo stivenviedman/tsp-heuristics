@@ -1,8 +1,15 @@
-package nodeSelection
+package insertion
 
 import "tsp-problems/util"
 
-func FarthestInsertion(locs []util.Node, potLocs []util.Node) (util.Node, int) {
+type nodeSelection struct{}
+
+type localNearestPoint struct {
+	index    int
+	distance float64
+}
+
+func (nodeSelection *nodeSelection) FarthestInsertion(locs []util.Node, potLocs []util.Node) (util.Node, int) {
 	element := potLocs[0]
 	index := 0
 	distance := util.ComputeDistance(locs[0], potLocs[0])
@@ -22,7 +29,7 @@ func FarthestInsertion(locs []util.Node, potLocs []util.Node) (util.Node, int) {
 	return element, index
 }
 
-func NearestInsertion(locs []util.Node, potLocs []util.Node) (util.Node, int) {
+func (nodeSelection *nodeSelection) NearestInsertion(locs []util.Node, potLocs []util.Node) (util.Node, int) {
 	element := potLocs[0]
 	index := 0
 	distance := util.ComputeDistance(locs[0], potLocs[0])
@@ -43,7 +50,7 @@ func NearestInsertion(locs []util.Node, potLocs []util.Node) (util.Node, int) {
 }
 
 // Node whose minimal distance to a tour node is maximal
-func MinMax(locs []util.Node, potLocs []util.Node) (util.Node, int) {
+func (nodeSelection *nodeSelection) MinMax(locs []util.Node, potLocs []util.Node) (util.Node, int) {
 	index := 0
 	minDistances := map[int]localNearestPoint{}
 
@@ -59,9 +66,4 @@ func MinMax(locs []util.Node, potLocs []util.Node) (util.Node, int) {
 	}
 
 	return potLocs[index], index
-}
-
-type localNearestPoint struct {
-	index    int
-	distance float64
 }
